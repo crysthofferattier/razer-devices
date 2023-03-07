@@ -11,9 +11,5 @@ DEVICE_SERIAL_NUMBER=$(polychromatic-cli -l | grep mouse | awk '{ print $4}' | s
 # Getting battery level
 BATTERY_LEVEL=$(polychromatic-cli -s $DEVICE_SERIAL_NUMBER -k | grep "Battery" | cut -d'y' -f 2 | cut -d'%' -f 1)
 
-# If battery level is lower than 20% show notification
-if [ $BATTERY_LEVEL -lt 20 ]
-then
-    notify-send --urgency=critical "Low battery!!! $BATTERY_LEVEL%" \
-    "Please charge Razer Viper Ultimate (Wireless)"
-fi
+notify-send "Razer Viper Ultimate (Wireless)" \
+    "Battery level!!! - $BATTERY_LEVEL%"
